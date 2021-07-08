@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'main_app/css/styles.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Login & Registration</title>
+</head>
+
+<body>
+  <div class="modal-body row">
+    <div class="col-md-6">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+<h1 class='text-center'>THE WALL</h1>
+      <h3 class="h3 text-center">Registro</h3>
+      <form action="/register" method="POST">
+        {%csrf_token%}
+        <div class="form-group">
+          <label for="first_name">Nombre:</label>
+          <input type="text" name="first_name" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="last_name">Apellido</label>
+          <input type="text" name="last_name" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="birthday">Fecha de nacimiento:</label>
+          <input type="date" name="birthday" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña:</label>
+          <input type="password" name="password" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Confirme Contraseña</label>
+          <input type="password" name="confirm_password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Validar datos.</button>
+
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <h3 class="h3 text-center">Login</h3>
+      <form action="/login" method="POST">
+        {%csrf_token%}
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </>
+</body>
+
+</html>
